@@ -1,0 +1,32 @@
+<h2>Lista de Itens</h2>
+
+<button (click)="adicionar()">Adicionar Item</button>
+
+@if (temItens === 0) {
+  <p>Nenhum item cadastrado.</p>
+} @else {
+  <p>Total de itens: {{ totalItens }}</p>
+
+  <ul>
+    @for (item of itens(); track item.id) {
+      <li>
+        <span>{{ item.nome }}</span>
+
+        @switch (item.status) {
+          @case ('ativo') {
+            <span style="color: green;">Ativo</span>
+          }
+          @case ('inativo') {
+            <span style="color: red;">Inativo</span>
+          }
+          @case ('pendente') {
+            <span style="color: orange;">Pendente</span>
+          }
+        }
+
+        <button (click)="toggle(item.id)">Alternar Status</button>
+        <button (click)="remover(item.id)">Remover</button>
+      </li>
+    }
+  </ul>
+}
