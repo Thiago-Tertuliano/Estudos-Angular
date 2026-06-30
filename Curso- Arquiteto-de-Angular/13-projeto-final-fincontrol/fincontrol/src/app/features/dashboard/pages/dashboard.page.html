@@ -1,0 +1,29 @@
+<header class="page-header">
+  <h1>Dashboard</h1>
+  <a routerLink="/transactions" class="btn">Ver transações</a>
+</header>
+
+@if (loading()) {
+  <p>Carregando resumo...</p>
+} @else {
+  <app-summary-cards
+    [income]="income()"
+    [expenses]="expenses()"
+    [balance]="balance()"
+    [count]="count()"
+  />
+
+  <section class="recent">
+    <h2>Últimas transações</h2>
+    <ul>
+      @for (tx of recent(); track tx.id) {
+        <li [class.expense]="tx.type === 'expense'">
+          <span>{{ tx.description }}</span>
+          <span>{{ tx.amount | currency: 'BRL' }}</span>
+        </li>
+      } @empty {
+        <li>Nenhuma transação ainda.</li>
+      }
+    </ul>
+  </section>
+}

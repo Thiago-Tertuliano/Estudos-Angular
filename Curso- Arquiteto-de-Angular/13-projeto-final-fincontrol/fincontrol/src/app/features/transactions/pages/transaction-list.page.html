@@ -1,0 +1,22 @@
+<h1>Transações</h1>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+<app-transaction-form
+  [categories]="categories()"
+  [submitting]="loading()"
+  (saved)="onSave($event)"
+/>
+
+<app-transaction-filters
+  [filters]="filters()"
+  (filtersChange)="onFiltersChange($event)"
+/>
+
+<app-transaction-table
+  [transactions]="filteredTransactions()"
+  [loading]="loading()"
+  (delete)="onDelete($event)"
+/>

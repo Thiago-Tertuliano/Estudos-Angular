@@ -1,0 +1,24 @@
+<!-- EXEMPLO DE REFERÊNCIA — Módulo 01 (Control Flow) -->
+<!-- Exercício: product-list usa mesma sintaxe @if @for @empty -->
+<!-- Guia: exercicios/GUIA-PASSO-A-PASSO.md Passo 3 -->
+
+<!-- Control Flow moderno — substitui *ngFor e *ngIf -->
+
+@if (loading()) {
+  <p class="loading">Carregando usuários...</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else {
+  <ul class="user-list">
+    @for (user of users(); track user.id) {
+      <li>
+        <strong>{{ user.name }}</strong>
+        <span>{{ user.email }}</span>
+      </li>
+    } @empty {
+      <li>Nenhum usuário encontrado.</li>
+    }
+  </ul>
+}
+
+<!-- track user.id é OBRIGATÓRIO para performance em listas mutáveis -->

@@ -1,0 +1,1 @@
+# Singletons: auth, interceptors, guards

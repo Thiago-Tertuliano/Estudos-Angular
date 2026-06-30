@@ -1,0 +1,22 @@
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo">₿</span>
+      <span>{{ appName }}</span>
+    </div>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/transactions" routerLinkActive="active">Transações</a>
+    </nav>
+    <div class="user">
+      @if (user(); as u) {
+        <span class="name">{{ u.name }}</span>
+        <span class="email">{{ u.email }}</span>
+      }
+      <button type="button" class="logout" (click)="logout()">Sair</button>
+    </div>
+  </aside>
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>

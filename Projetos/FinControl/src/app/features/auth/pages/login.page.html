@@ -1,0 +1,32 @@
+<div class="login-page">
+  <div class="card">
+    <h1>FinControl</h1>
+    <p class="subtitle">Dashboard de finanças pessoais — projeto final do curso</p>
+
+    @if (sessionExpired) {
+      <p class="banner">Sessão expirada. Faça login novamente.</p>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>
+        E-mail
+        <input type="email" formControlName="email" autocomplete="email" />
+      </label>
+
+      <label>
+        Senha
+        <input type="password" formControlName="password" autocomplete="current-password" />
+      </label>
+
+      @if (error()) {
+        <p class="error">{{ error() }}</p>
+      }
+
+      <button type="submit" [disabled]="loading() || form.invalid">
+        {{ loading() ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </form>
+
+    <p class="hint">Demo: qualquer e-mail válido + senha com 3+ caracteres</p>
+  </div>
+</div>

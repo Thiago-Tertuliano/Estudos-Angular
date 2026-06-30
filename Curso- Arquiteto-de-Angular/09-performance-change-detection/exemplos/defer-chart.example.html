@@ -1,0 +1,13 @@
+<!-- Carrega chart pesado só quando entra no viewport -->
+
+@defer (on viewport) {
+  <app-expenses-chart [data]="expensesByCategory()" />
+} @placeholder (minimum 200ms) {
+  <div class="chart-skeleton" aria-hidden="true"></div>
+} @loading (minimum 500ms) {
+  <p>Preparando gráfico...</p>
+} @error {
+  <p role="alert">Não foi possível carregar o gráfico.</p>
+}
+
+<!-- Benefícios: FCP mais rápido, menos JS inicial -->
