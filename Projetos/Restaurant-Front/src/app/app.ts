@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  template: `<h1>Restaurant Front</h1><p>Sprint 0 - app vivo</p>`,
+  imports: [RouterOutlet],
+  template: `<router-outlet />`,
   styleUrl: './app.scss',
 })
 export class App {}
