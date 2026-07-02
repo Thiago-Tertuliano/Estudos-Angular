@@ -1,6 +1,8 @@
 import { HttpResponse, HttpInterceptorFn, HttpErrorResponse } from "@angular/common/http";
-import { DEMO_USER, MOCK_TABLES } from "./mock-data";
+import { DEMO_USER, MOCK_ORDERS, MOCK_TABLES } from "./mock-data";
 import { of, delay, throwError  } from "rxjs";
+import { CreateOrderPayload, Order } from "@features/orders/data-access/order.model";
+import { OrderStatus } from "@features/orders/data-access/order.model";
 
 
 export const mockApiInterceptor: HttpInterceptorFn = (req, next) => {
@@ -22,5 +24,22 @@ export const mockApiInterceptor: HttpInterceptorFn = (req, next) => {
     return of(new HttpResponse({ status: 200, body: MOCK_TABLES })).pipe(delay(latency));
   }
 
+  if (req.url === '/api/orders' && req.method === 'GET') {
+    return of(new HttpResponse({ status: 200, body: MOCK_ORDERS })).pipe(delay(latency));
+  }
+    if (req.url === '/api/orders' && req.method === 'POST') {
+      const { tableId, waiterId } = req.body as CreateOrderPayload;
+      const newOrder = {
+        id: (MOCK_ORDERS.length + 1).toString(),
+        tableId,
+        waiterId,
+        totalPrice: 0,
+        status: 'Open' as OrderStatus,
+        openedAt: new Date().toISOString(),
+        closedAt: null,
+      };
+      MOCK_ORDERS.push(newOrder as Order);
+      return of(new HttpResponse({ status: 201, body: newOrder })).pipe(delay(latency));
+    }
   return next(req);
-}
+};

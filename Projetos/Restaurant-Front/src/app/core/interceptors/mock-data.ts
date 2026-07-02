@@ -1,3 +1,4 @@
+import { Order } from "@features/orders/data-access/order.model";
 import { Table } from "@features/tables/data-access/table.model";
 
 export interface User {
@@ -51,4 +52,24 @@ export const MOCK_TABLES: Table[] = [
     capacity: 14,
     status: 'Available',
   },
+];
+
+export const MOCK_ORDERS: Order[] = [{
+    id: '1',
+    tableId: '1',
+    waiterId: '1',
+    totalPrice: 100,
+    status: 'Open',
+    openedAt: new Date().toISOString(),
+    closedAt: null,
+  },
+    {
+      id: '2',
+      tableId: '3',
+      waiterId: '3',
+      totalPrice: 300,
+      status: 'Finish',
+      openedAt: new Date().toISOString(),
+      closedAt: new Date().toISOString(),
+    },
 ];
