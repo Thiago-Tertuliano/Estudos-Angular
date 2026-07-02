@@ -3,6 +3,12 @@ import { ShellComponent } from "@core/layout/shell.component";
 
 export const routes: Routes = [
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/pages/login.page').then((m) => m.LoginPage),
+    title: 'Login - Restaurant Front',
+  },
+  {
     path: '',
     component: ShellComponent,
     children: [
