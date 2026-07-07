@@ -17,9 +17,12 @@ Este repositório reúne **cursos**, **laboratórios** e **projetos de portfóli
 flowchart LR
   A[Fernanda Kipper<br/>Fundamentos] --> B[Curso Arquiteto<br/>Módulos 00–13]
   B --> C[angular-lab<br/>Prática incremental]
-  B --> D[FinControl<br/>Dashboard enterprise]
+  B --> D[FinControl<br/>Dashboard financeiro]
+  B --> G[ProjControl<br/>Gestão de projetos]
   E[Material Sinacor<br/>PDF] --> F[gestao-titulos<br/>Container/Presenter]
+  E --> H[Sinacor-app<br/>Cadastro clientes]
   C --> D
+  C --> G
 ```
 
 | Trilha | Objetivo | Quando usar |
@@ -41,7 +44,10 @@ Estudos-AngularJS/
 │   └── rascunho/angular-lab/          # Lab em evolução (módulos 00–12)
 └── Projetos/                          # Apps standalone de portfólio
     ├── FinControl/                    # Dashboard financeiro (módulo 13)
-    └── gestao-titulos/                # Exercício Sinacor (Material.pdf)
+    ├── projcontrol/                   # Gestão de projetos (KPIs + CRUD)
+    ├── gestao-titulos/                # Exercício Sinacor (Material.pdf)
+    ├── Restaurant-Front/              # Auth + pedidos (padrão restaurante)
+    └── Sinacor/Sinacor-app/           # Cadastro de clientes corporativo
 ```
 
 ---
@@ -74,10 +80,13 @@ Estudos-AngularJS/
 | Projeto | Descrição | Comando |
 |---------|-----------|---------|
 | [**angular-lab**](./Curso-%20Arquiteto-de-Angular/rascunho/angular-lab/) | Lab incremental dos módulos 00–12: catalog, auth, facade, RxJS, testes | `cd Curso-\ Arquiteto-de-Angular/rascunho/angular-lab && ng serve` |
-| [**FinControl**](./Projetos/FinControl/) | Dashboard de finanças — feature-based, mock API, guards, KPIs | `cd Projetos/FinControl && ng serve` |
+| [**FinControl**](./Projetos/FinControl/) | Dashboard de finanças — feature-based, mock API, guards, KPIs, CRUD transações | `cd Projetos/FinControl && ng serve` |
+| [**ProjControl**](./Projetos/projcontrol/) | Gestão de projetos — dashboard KPIs, CRUD projetos, status/prazos | `cd Projetos/projcontrol && ng serve` |
 | [**gestao-titulos**](./Projetos/gestao-titulos/) | Sinacor Eleva Cloud — Container/Presenter, state global, CSV | `cd Projetos/gestao-titulos && ng serve` → `/gestao-titulos` |
+| [**Restaurant-Front**](./Projetos/Restaurant-Front/) | Auth + dashboard + pedidos/mesas — padrão smart/dumb + mock API | `cd Projetos/Restaurant-Front && ng serve` |
+| [**Sinacor-app**](./Projetos/Sinacor/Sinacor-app/) | Cadastro de clientes — Material, Container/Presenter, SSR | `cd Projetos/Sinacor/Sinacor-app && ng serve` |
 
-### Credenciais demo (FinControl / angular-lab)
+### Credenciais demo (FinControl / ProjControl / angular-lab / Restaurant-Front)
 
 Qualquer e-mail válido + senha com **3+ caracteres** (ex.: `dev@test.com` / `123`).
 
@@ -103,9 +112,9 @@ Qualquer e-mail válido + senha com **3+ caracteres** (ex.: `dev@test.com` / `12
 
 | Padrão | Onde aparece |
 |--------|----------------|
-| Smart / Dumb (`pages` + `ui`) | `angular-lab`, FinControl |
-| Container / Presenter | `gestao-titulos` (Sinacor) |
-| Facade + API | `ProductFacade`, `TransactionFacade`, `TituloService` |
+| Smart / Dumb (`pages` + `ui`) | `angular-lab`, FinControl, ProjControl, Restaurant-Front |
+| Container / Presenter | `gestao-titulos`, `Sinacor-app` (Sinacor) |
+| Facade + API | `ProductFacade`, `TransactionFacade`, `ProjectFacade`, `TituloService` |
 | State com `_data` + `asReadonly()` | `TituloStateService`, `CatalogStore` |
 | Guards + lazy routes | Todos os apps |
 | OnPush nos dumb | Regra em todo o curso |
