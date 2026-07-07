@@ -1,0 +1,34 @@
+<header class="page-header">
+  <h1>Dashboard</h1>
+  <a routerLink="/projects" class="btn">Ver projetos</a>
+</header>
+
+@if (loading()) {
+  <p>Carregando resumo...</p>
+} @else {
+  <app-summary-cards
+    [total]="total()"
+    [inProgress]="inProgress()"
+    [completed]="completed()"
+    [overdue]="overdue()"
+  />
+
+  <section class="recent">
+    <h2>Projetos recentes</h2>
+    <ul>
+      @for (project of recent(); track project.id) {
+        <li [class.overdue]="isOverdue(project.deadline, project.status)">
+          <div class="info">
+            <span class="name">{{ project.name }}</span>
+            <span class="meta">
+              {{ statusLabels[project.status] }} · {{ project.responsible }}
+            </span>
+          </div>
+          <span class="deadline">{{ project.deadline | date: 'dd/MM/yyyy' }}</span>
+        </li>
+      } @empty {
+        <li>Nenhum projeto cadastrado.</li>
+      }
+    </ul>
+  </section>
+}

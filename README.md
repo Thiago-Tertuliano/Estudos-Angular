@@ -48,6 +48,8 @@ Estudos-AngularJS/
 
 ## Por onde começar?
 
+> **Treino para reunião / entrevista:** [QUESTIONARIO-TREINO.md](./QUESTIONARIO-TREINO.md) — 75 perguntas (blocos 1–8), incluindo bloco sênior de caça-falhas.
+
 ### Iniciante
 
 1. [Curso Fernanda Kipper](./Curso-de-Angular-FernandaKipper/meu-primeiro-app/) — primeiro app

@@ -1,0 +1,18 @@
+<h1>Projetos</h1>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+<app-project-form [submitting]="loading()" (saved)="onSave($event)" />
+
+<app-project-filters
+  [filters]="filters()"
+  (filtersChange)="onFiltersChange($event)"
+/>
+
+<app-project-table
+  [projects]="filteredProjects()"
+  [loading]="loading()"
+  (delete)="onDelete($event)"
+/>
