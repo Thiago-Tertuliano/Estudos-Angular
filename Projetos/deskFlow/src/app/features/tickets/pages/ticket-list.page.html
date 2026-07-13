@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Tickets</h1>
+  <a routerLink="/tickets/new" class="btn-primary">Novo Ticket</a>
+</div>
+
+
+<app-ticket-filters
+  [filters]="filters()"
+  (filtersChange)="onFiltersChange($event)"
+/>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (!loading() && filteredTickets().length === 0) {
+  <app-empty-state message="Nenhum ticket encontrado" />
+} @else {
+  <app-ticket-table [tickets]="filteredTickets()" [loading]="loading()" />
+}

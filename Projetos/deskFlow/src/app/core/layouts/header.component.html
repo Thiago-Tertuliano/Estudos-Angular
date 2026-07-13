@@ -1,0 +1,21 @@
+<header class="header">
+  <div class="brand">
+    <span class="logo">D</span>
+    <span>{{ appName }}</span>
+  </div>
+
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/tickets" routerLinkActive="active">Tickets</a>
+  </nav>
+
+  <div class="user-area">
+    @if (user(); as u) {
+      <div class="user-info">
+        <span class="name">{{ u.name }}</span>
+        <span class="email">{{ u.email }}</span>
+      </div>
+    }
+    <button type="button" class="logout" (click)="logout()">Sair</button>
+  </div>
+</header>

@@ -1,0 +1,18 @@
+<div class="login-page">
+    <div class="card">
+        <h1>DeskFlow</h1>
+        <p class="subtitle">Organização e Eficiencia em um só lugar.</p>
+
+        @if (sessionExpired) {
+            <p class="banner">Sessão expirada. Faça o Login novamente.</p>
+        }
+
+        <app-login-form
+            [loading]="loading()"
+            [error]="error()"
+            (submitForm)="onSubmit($event)"
+        />
+
+        <p class="hint">Demo: qualquer e-mail válido + senha com 3+ caracteres.</p>
+    </div>
+</div>

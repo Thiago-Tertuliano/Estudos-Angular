@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>{{ isEdit() ? 'Editar ticket' : 'Novo ticket' }}</h1>
+  <a routerLink="/tickets" class="btn-link">Voltar para lista</a>
+</div>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (!loading() || initialValue()) {
+  <app-ticket-form
+    [submitting]="loading()"
+    [initialValue]="initialValue()"
+    (submitForm)="onSubmit($event)"
+  />
+} @else {
+  <p>Carregando ticket...</p>
+}
