@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DashboardStore } from '../data-access/dashboard.store';
 import { SummaryCardsComponent } from '../ui/summary-cards.component';
@@ -8,7 +7,7 @@ import { CardComponent } from '../../../shared/components/card/card.component';
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [CurrencyPipe, RouterLink, SummaryCardsComponent, CardComponent],
+  imports: [RouterLink, SummaryCardsComponent, CardComponent],
   template: `
     <div class="dashboard">
       <div class="page-header">

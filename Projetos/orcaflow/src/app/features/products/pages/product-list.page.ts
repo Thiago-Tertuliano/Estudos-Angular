@@ -11,7 +11,7 @@ import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialo
 @Component({
   selector: 'app-product-list-page',
   standalone: true,
-  imports: [RouterLink, ProductTableComponent, ProductFormComponent, CardComponent],
+  imports: [ProductTableComponent, ProductFormComponent, CardComponent],
   template: `
     <div class="page">
       <div class="page-header">

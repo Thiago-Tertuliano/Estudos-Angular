@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +10,7 @@ import { EmptyStateComponent } from '../../../shared/components/empty-state/empt
 @Component({
   selector: 'app-product-table',
   standalone: true,
-  imports: [CurrencyPipe, DatePipe, MatTableModule, MatButtonModule, MatIconModule, MatChipsModule, EmptyStateComponent],
+  imports: [CurrencyPipe, MatTableModule, MatButtonModule, MatIconModule, MatChipsModule, EmptyStateComponent],
   template: `
     @if (products().length === 0 && !loading()) {
       <app-empty-state title="Nenhum produto encontrado" message="Cadastre seu primeiro produto." />

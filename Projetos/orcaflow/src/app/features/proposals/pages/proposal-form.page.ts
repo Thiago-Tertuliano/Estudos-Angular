@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { CanComponentDeactivate } from '../../../core/guards/can-deactivate.guard';
+import { Proposal, ProposalStatus } from '../data-access/proposal.model';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { ProposalService } from '../data-access/proposal.service';
-import { ClientService } from '../../../clients/data-access/client.service';
+import { ClientService } from '../../clients/data-access/client.service';
 import { ProposalFormComponent } from '../ui/proposal-form.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
 
@@ -69,14 +70,14 @@ export class ProposalFormPage implements CanComponentDeactivate {
     return dialogRef.afterClosed();
   }
 
-  onSave(data: any) {
+  onSave(data: { clientId: number; status: ProposalStatus; discount: number; items: { productId: number; productName: string; quantity: number; unitPrice: number }[] }) {
     this.submitting.set(true);
     const request = this.isEdit()
       ? this.proposalService.update(+this.route.snapshot.params['id'], data)
       : this.proposalService.create(data);
 
     request.subscribe({
-      next: (proposal: any) => {
+      next: (proposal: Proposal) => {
         this.formSubmitted = true;
         if (!this.isEdit()) {
           this.proposalService.items.update(list => [...list, proposal]);

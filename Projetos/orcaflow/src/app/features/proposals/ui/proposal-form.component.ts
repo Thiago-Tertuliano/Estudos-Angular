@@ -1,4 +1,4 @@
-import { Component, input, output, signal, computed, effect } from '@angular/core';
+import { Component, input, output, signal, computed, effect, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { Client } from '../../clients/data-access/client.model';
 import { ProductSelectorComponent } from '../../products/ui/product-selector.component';
 import { ProductService } from '../../products/data-access/product.service';
+import { Product } from '../../products/data-access/product.model';
+import { ProposalStatus } from '../data-access/proposal.model';
 import { CurrencyMaskDirective } from '../../../core/directives/currency-mask.directive';
 
 @Component({
@@ -104,7 +106,7 @@ export class ProposalFormComponent {
   readonly submitting = input(false);
 
   readonly saved = output<{
-    clientId: number; status: string; discount: number;
+    clientId: number; status: ProposalStatus; discount: number;
     items: { productId: number; productName: string; quantity: number; unitPrice: number }[];
   }>();
 
@@ -166,12 +168,13 @@ export class ProposalFormComponent {
   onSubmit() {
     if (this.form.invalid) return;
     const raw = this.form.getRawValue();
-    const items = raw.items.map((i: any) => ({
+    interface RawItem { productId: number; quantity: number; unitPrice: number; }
+    const items: RawItem[] = raw.items.map((i: { productId: number; quantity: number; unitPrice: number }) => ({
       productId: i.productId,
       quantity: i.quantity,
       unitPrice: i.unitPrice || 0,
     }));
-    const enrichedItems = items.map((i: any) => {
+    const enrichedItems = items.map((i) => {
       const product = this.productService.items().find(p => p.id === i.productId);
       return { ...i, productName: product?.name || '' };
     });

@@ -25,7 +25,7 @@ import { EmptyStateComponent } from '../../../shared/components/empty-state/empt
         </ng-container>
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let p"><mat-chip [color]="p.status === 'approved' ? 'primary' : p.status === 'rejected' ? 'warn' : ''">{{ PROPOSAL_STATUS_LABELS[p.status] }}</mat-chip></td>
+          <td mat-cell *matCellDef="let p"><mat-chip [color]="p.status === 'approved' ? 'primary' : p.status === 'rejected' ? 'warn' : ''">{{ statusLabel(p.status) }}</mat-chip></td>
         </ng-container>
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef>Total</th>
@@ -55,6 +55,10 @@ export class ProposalTableComponent {
   readonly loading = input(false);
   readonly columns = ['clientName', 'status', 'total', 'createdAt', 'actions'];
   readonly PROPOSAL_STATUS_LABELS = PROPOSAL_STATUS_LABELS;
+
+  statusLabel(status: Proposal['status']): string {
+    return PROPOSAL_STATUS_LABELS[status];
+  }
 
   calcTotal(p: Proposal): number {
     const itemsTotal = p.items.reduce((sum, i) => sum + i.quantity * i.unitPrice, 0);

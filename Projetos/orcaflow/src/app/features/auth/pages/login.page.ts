@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../data-access/auth.service';
@@ -9,7 +9,7 @@ import { APP_CONFIG } from '../../../core/tokens/app-config.token';
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, MatCardModule, LoginFormComponent],
+  imports: [ReactiveFormsModule, MatCardModule, LoginFormComponent],
   template: `
     <div class="login-page">
       <mat-card class="login-card">

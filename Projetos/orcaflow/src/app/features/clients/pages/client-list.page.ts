@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClientService } from '../data-access/client.service';
 import { ClientTableComponent } from '../ui/client-table.component';
@@ -9,7 +8,7 @@ import { CardComponent } from '../../../shared/components/card/card.component';
 @Component({
   selector: 'app-client-list-page',
   standalone: true,
-  imports: [RouterLink, ClientTableComponent, ClientFormComponent, CardComponent],
+  imports: [ClientTableComponent, ClientFormComponent, CardComponent],
   template: `
     <div class="page">
       <div class="page-header"><h1>Clientes</h1></div>

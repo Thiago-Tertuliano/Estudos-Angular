@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { CurrencyPipe, PercentPipe } from '@angular/common';
+import { PercentPipe } from '@angular/common';
 import { CardComponent } from '../../../shared/components/card/card.component';
 
 interface Kpi { label: string; value: number | string; variant: string; }
@@ -7,7 +7,7 @@ interface Kpi { label: string; value: number | string; variant: string; }
 @Component({
   selector: 'app-summary-cards',
   standalone: true,
-  imports: [CurrencyPipe, CardComponent],
+  imports: [CardComponent],
   template: `
     <div class="kpi-grid">
       @for (kpi of kpis(); track kpi.label) {

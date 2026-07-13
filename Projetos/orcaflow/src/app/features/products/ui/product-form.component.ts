@@ -19,7 +19,7 @@ import { CurrencyMaskDirective } from '../../../core/directives/currency-mask.di
         <input matInput formControlName="name" />
       </mat-form-field>
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Descrição</mat-label>
+        <mat-label>Descricao</mat-label>
         <textarea matInput formControlName="description" rows="2"></textarea>
       </mat-form-field>
       <div class="form-row">
@@ -32,7 +32,7 @@ import { CurrencyMaskDirective } from '../../../core/directives/currency-mask.di
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Preço (R$)</mat-label>
+          <mat-label>Preco (R$)</mat-label>
           <input matInput formControlName="priceDisplay" appCurrencyMask />
         </mat-form-field>
       </div>
@@ -49,7 +49,7 @@ import { CurrencyMaskDirective } from '../../../core/directives/currency-mask.di
     .full-width { width: 100%; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-actions { display: flex; gap: 0.5rem; justify-content: flex-end; padding-top: 0.5rem; }
-  `},
+  `],
 })
 export class ProductFormComponent implements OnInit {
   private readonly fb = new FormBuilder();
@@ -63,7 +63,7 @@ export class ProductFormComponent implements OnInit {
   readonly form: FormGroup = this.fb.nonNullable.group({
     name: ['', Validators.required],
     description: [''],
-    category: ['Serviço', Validators.required],
+    category: ['Servico', Validators.required],
     priceDisplay: [''],
     active: [true],
   });
@@ -82,6 +82,6 @@ export class ProductFormComponent implements OnInit {
       price: raw.priceDisplay || 0,
       active: raw.active,
     });
-    this.form.reset({ name: '', description: '', category: 'Serviço', priceDisplay: '', active: true });
+    this.form.reset({ name: '', description: '', category: 'Servico', priceDisplay: '', active: true });
   }
 }
