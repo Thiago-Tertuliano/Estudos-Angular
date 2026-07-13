@@ -1,5 +1,4 @@
-import { Injectable, inject, computed } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { Injectable, inject, computed, signal } from '@angular/core';
 import { ClientService } from '../../clients/data-access/client.service';
 import { ProductService } from '../../products/data-access/product.service';
 import { ProposalService } from '../../proposals/data-access/proposal.service';
@@ -35,10 +34,8 @@ export class DashboardStore {
   );
 
   loadAll() {
-    forkJoin({
-      clients: this.clientService.loadAll,
-      products: this.productService.loadAll,
-      proposals: this.proposalService.loadAll,
-    }).subscribe();
+    this.clientService.loadAll();
+    this.productService.loadAll();
+    this.proposalService.loadAll();
   }
 }

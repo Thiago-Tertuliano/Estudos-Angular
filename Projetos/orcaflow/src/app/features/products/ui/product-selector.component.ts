@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, forwardRef, inject, signal, computed } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,7 +9,7 @@ import { ProductService } from '../data-access/product.service';
 @Component({
   selector: 'app-product-selector',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, CurrencyPipe],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ProductSelectorComponent), multi: true }],
   template: `
     <mat-form-field appearance="outline" class="full-width">

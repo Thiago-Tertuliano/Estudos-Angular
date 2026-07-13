@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Client } from '../../data-access/client.model';
+import { Client } from '../data-access/client.model';
 import { EmptyStateComponent } from '../../../shared/components/empty-state/empty-state.component';
 import { CnpjPipe } from '../../../shared/pipes/cnpj.pipe';
 
