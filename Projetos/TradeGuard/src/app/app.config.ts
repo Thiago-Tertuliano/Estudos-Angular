@@ -6,12 +6,13 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
 import { APP_CONFIG, DEFAULT_CONFIG } from './core/tokens/app-config.token';
+import { retryInterceptor } from './core/interceptors/retry.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor, retryInterceptor])),
     { provide: APP_CONFIG, useValue: DEFAULT_CONFIG }
   ]
 };
