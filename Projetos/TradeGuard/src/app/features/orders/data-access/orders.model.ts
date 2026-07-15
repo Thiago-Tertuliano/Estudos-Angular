@@ -15,5 +15,5 @@ export interface Order {
     totalValue: number;
     createdBy: number;
     createdAt: string;
-    updateAt: string;
+    updatedAt: string;
 }

@@ -1,5 +1,6 @@
 import { Directive, inject, Input, TemplateRef, ViewContainerRef } from "@angular/core";
 import { AuthService } from "../../features/auth/data-access/auth.service";
+import { roleUser } from "../../features/auth/data-access/user.model";
 
 @Directive({
     selector: '[appHasPermission]',
@@ -10,7 +11,7 @@ export class PermissionDirective {
     private readonly vcr = inject (ViewContainerRef);
     private readonly auth = inject (AuthService);
 
-    @Input() set appPermission(requiredRole: string) {
+    @Input() set appHasPermission(requiredRole: roleUser) {
         const user = this.auth.currentUser();
         if (user?.role === requiredRole || user?.role === 'admin') {
             this.vcr.createEmbeddedView(this.templateRef);
